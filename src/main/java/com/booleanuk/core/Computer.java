@@ -12,21 +12,21 @@ public class Computer {
     }
 
     public Computer(PowerSupply ps, ArrayList<Game> preInstalled) {
-        this.powerSupply = ps;
-        this.installedGames = preInstalled;
+        this(ps);
+        this.installedGames.addAll(preInstalled);
     }
 
     public void turnOn() {
         this.powerSupply.turnOn();
     }
 
-    public void installGame(String gameName) {
-        this.installedGames.add(new Game(gameName));
+    public void installGame(Game game) {
+        this.installedGames.add(game);
     }
 
-    public String playGame(String gameName) {
+    public String playGame(Game game) {
         for (Game g : this.installedGames) {
-            if (g.name.equals(gameName)) {
+            if (g.equals(game)) {
                 return g.start();
             }
         }

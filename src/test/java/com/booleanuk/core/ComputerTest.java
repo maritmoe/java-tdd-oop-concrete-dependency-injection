@@ -20,7 +20,7 @@ class ComputerTest {
         PowerSupply myPsu = new PowerSupply();
         Computer myPc = new Computer(myPsu);
 
-        myPc.installGame("Final Fantasy XI");
+        myPc.installGame(new Game("Final Fantasy XI"));
 
         Assertions.assertEquals(1, myPc.installedGames.size());
         Assertions.assertEquals("Final Fantasy XI", myPc.installedGames.get(0).name);
@@ -31,12 +31,15 @@ class ComputerTest {
         PowerSupply myPsu = new PowerSupply();
         Computer myPc = new Computer(myPsu);
 
-        myPc.installGame("Duck Game");
-        myPc.installGame("Dragon's Dogma: Dark Arisen");
+        Game game1 = new Game("Duck Game");
+        myPc.installGame(game1);
+        Game game2 = new Game("Dragon's Dogma: Dark Arisen");
+        myPc.installGame(game2);
+        Game game3 = new Game("Morrowind");
 
-        Assertions.assertEquals("Playing Duck Game", myPc.playGame("Duck Game"));
-        Assertions.assertEquals("Playing Dragon's Dogma: Dark Arisen", myPc.playGame("Dragon's Dogma: Dark Arisen"));
-        Assertions.assertEquals("Game not installed", myPc.playGame("Morrowind"));
+        Assertions.assertEquals("Playing Duck Game", myPc.playGame(game1));
+        Assertions.assertEquals("Playing Dragon's Dogma: Dark Arisen", myPc.playGame(game2));
+        Assertions.assertEquals("Game not installed", myPc.playGame(game3));
     }
 
     @Test
